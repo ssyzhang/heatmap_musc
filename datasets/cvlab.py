@@ -119,9 +119,9 @@ class CVLabDataset(torch.utils.data.Dataset):
         maskpaths_per_class = {}
         
         for classname in self.classnames_to_use:
-            classpath = 'e:/cvlab/data0312/PF/img'
+            classpath = '../SR/img'
             # classpath = os.path.join(self.sokurce, classname, self.split.value)
-            maskpath = 'e:/cvlab/data0312/PF/mask'
+            maskpath = '../SR/mask'
             # maskpath = os.path.join(self.source, classname, "ground_truth")
             # anomaly_types = os.listdir(classpath)
 

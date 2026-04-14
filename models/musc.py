@@ -115,8 +115,8 @@ class MuSc():
                 
                 mask_name = img_name.replace(".png", "_mask.png")
                 # 统一的绝对路径
-                mask_path = os.path.join("e:/cvlab/data0312/PF/mask", mask_name)
-                origin_path = os.path.join("e:/cvlab/data0312/PF/img", img_name)
+                mask_path = os.path.join("../SR/mask", mask_name)
+                origin_path = os.path.join("../SR/img", img_name)
 
                 if anomaly_type not in['good', 'Normal', 'ok'] and gt_list[i] != 0:
                     save_dir = os.path.join(self.output_dir, category, anomaly_type)
@@ -409,17 +409,17 @@ class MuSc():
         gt_sp = np.array(gt_list)#真实标签0，1
         gt_px = torch.cat(img_masks, dim=0).numpy().astype(np.int32)#每张图片的每个像素点的真实标签
         pr_px = np.array(anomaly_maps)#每张图片的每个像素点的异常分数
-        image_metric, pixel_metric = compute_metrics(gt_sp, pr_sp, gt_px, pr_px)#计算各项指标
-        auroc_sp, f1_sp, ap_sp = image_metric
-        auroc_px, f1_px, ap_px, aupro = pixel_metric
-        print(category)
-        print('image-level, auroc:{}, f1:{}, ap:{}'.format(auroc_sp*100, f1_sp*100, ap_sp*100))
-        print('pixel-level, auroc:{}, f1:{}, ap:{}, aupro:{}'.format(auroc_px*100, f1_px*100, ap_px*100, aupro*100))
+        # image_metric, pixel_metric = compute_metrics(gt_sp, pr_sp, gt_px, pr_px)#计算各项指标
+        # auroc_sp, f1_sp, ap_sp = image_metric
+        # auroc_px, f1_px, ap_px, aupro = pixel_metric
+        # print(category)
+        # print('image-level, auroc:{}, f1:{}, ap:{}'.format(auroc_sp*100, f1_sp*100, ap_sp*100))
+        # print('pixel-level, auroc:{}, f1:{}, ap:{}, aupro:{}'.format(auroc_px*100, f1_px*100, ap_px*100, aupro*100))
 
         if self.vis:
             print('visualization...')
             self.visualization(image_path_list, gt_list, pr_px, category)
-    
+        image_metric, pixel_metric=0,0
         return image_metric, pixel_metric
 
 
